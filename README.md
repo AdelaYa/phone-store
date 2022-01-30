@@ -1,2 +1,2 @@
 # phone-store
-Joint project of an online phone store.
+Совместный проект интернет-магазина телефонов.
