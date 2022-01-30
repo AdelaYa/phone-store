@@ -1,0 +1,61 @@
+.phone-detail-card{
+max-width: 75%;
+margin: 0 auto;
+margin-top: 48px;
+}
+
+.form-card{
+margin-left: 10%;
+margin-right: 60%;
+margin-top: 48px;
+}
+
+.home-phone-title{
+text-align: center;
+}
+
+.phone-title-a{
+text-decoration: none!important;
+}
+
+.phone-delete-card{
+max-width: 75%;
+margin: 0 auto;
+margin-top: 48px;
+}
+
+.phone-price{
+font-size: 24px
+}
+
+.btn-big{
+font-size: 24px
+}
+
+.right{
+align: right;
+}
+
+.text-in-stock{
+margin-right:20%;
+font-size: 20px;
+margin-top:5%;
+}
+
+.text-in-stock-detail{
+margin-right: 60%;
+font-size: 20px;
+}
+
+.text-username{
+color: white;
+font-size: 24px;
+}
+
+.div-title{
+max-width: 70%;
+}
+
+.phone-detail-btns{
+margin-left: 25%;
+}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Добавить телефон{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="form-card">
+        <h1>Добавить телефон</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Добавить">
+        </form>
+    </div>
+{% endblock content %}

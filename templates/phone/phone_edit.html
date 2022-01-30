@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Редактирование {{ phone.manufacturer }} {{ phone.model }}{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="form-card">
+        <h1>Редактирование {{ phone.manufacturer }} {{ phone.model }}</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Сохранить">
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ phone.manufacturer }} {{ phone.model }}{% endblock title %}
+{% block content %}
+<div class="card phone-detail-card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+        <img class="card-img-top" src="{{ phone.image.url }}" alt="{{ phone.manufacturer }} {{ phone.model }}" width=300 height="391">
+    </div>
+    <div class="col-md-8">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="div-title">
+                        <h2>
+                            <a href="{% url 'phone_detail' phone.slug %}" class="phone-title-a">{{ phone.manufacturer }} {{ phone.model }}</a>
+                        </h2>
+                    </div>
+                    {% if user.is_authenticated %}
+                        <div class="phone-detail-btns">
+                            <a href="{% url 'phone_edit' phone.slug %}">
+                                <button type="button" class="btn btn-big btn-secondary">Редактировать</button>
+                            </a>
+                            <a href="{% url 'phone_delete' phone.slug %}">
+                                <button type="button" class="btn btn-big btn-danger" style="align: right;">Удалить</button>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <p class="card-text">
+                <p>{{ phone.description }}</p>
+                <p>Цвет {{ phone.get_color_display }}</p>
+                <p>Дисплей {{ phone.diag_display }}", {{ phone.type_display }}</p>
+                <p>Процессор {{ phone.proc }}</p>
+                <p>Объем оперативной памяти {{ phone.ram }}</p>
+                <p>Объем встроенной памяти {{ phone.rom }}</p>
+                <p>Емкость аккумулятора {{ phone.battery }}</p>
+                <p>Основная камера {{ phone.main_camera }}</p>
+                <p>Фронтальная камера {{ phone.front_camera }}</p>
+                <p>Год выпуска {{ phone.year }}</p>
+                <p class="phone-price">{{ phone.price }} ₽</p>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-big btn-primary">Купить</button>
+                </div>
+                <p class="text-in-stock-detail">В наличии {{ phone.count }}</p>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
