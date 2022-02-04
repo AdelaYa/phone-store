@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Manufacturer(models.Model):
@@ -137,3 +138,23 @@ class Phone(models.Model):
 
     def __str__(self):
         return self.model
+
+
+class Review(models.Model):
+    phone = models.ForeignKey(Phone,
+                              related_name='reviews',
+                              on_delete=models.CASCADE,
+                              verbose_name='Телефон',
+                              )
+    review = models.CharField(max_length=200, verbose_name='Отзыв')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return self.review
+
+    def get_absolute_url(self):
+        return reverse('game_post_detail', args=[str(self.phone.id)])
