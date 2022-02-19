@@ -51,4 +51,14 @@
     </div>
   </div>
 </div>
+<div class="card-footer">
+    {% for review in phone.reviews.all %}
+    <p>
+        <span class="font-weight-bold">{{ review.author }}</span>
+        {{ review }}
+    </p>
+    {% empty %}
+    <p>Отзывов пока нет.</p>
+    {% endfor %}
+</div>
 {% endblock content %}

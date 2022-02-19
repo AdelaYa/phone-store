@@ -157,4 +157,4 @@ class Review(models.Model):
         return self.review
 
     def get_absolute_url(self):
-        return reverse('game_post_detail', args=[str(self.phone.id)])
+        return reverse('phone_detail', args=[str(self.phone.id)])
