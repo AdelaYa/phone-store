@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
 {% load static %}
 {% block title %}{{ phone.manufacturer }} {{ phone.model }}{% endblock title %}
 {% block content %}
@@ -50,15 +51,30 @@
         </div>
     </div>
   </div>
-</div>
-<div class="card-footer">
-    {% for review in phone.reviews.all %}
-    <p>
-        <span class="font-weight-bold">{{ review.author }}</span>
-        {{ review }}
-    </p>
-    {% empty %}
-    <p>Отзывов пока нет.</p>
-    {% endfor %}
+  <div class="card-footer">
+        <div>
+            <h4>Добавить отзыв</h4>
+            <form action="." method="post" class="review-form">
+                {% csrf_token %}
+                {{ review_form|crispy }}
+                <input type="submit" value="Добавить">
+            </form>
+            {% for review in reviews reversed  %}
+            <div class="card review">
+                <div class="card-header">
+                    {{ review.author }}
+                    {% if user == review.author %}
+                     | <a href="{% url 'delete_review' phone.slug review.id %}">Удалить</a>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <p>{{ review.review }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p>Отзывов пока нет.</p>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock content %}

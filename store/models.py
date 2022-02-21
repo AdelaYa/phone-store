@@ -146,7 +146,7 @@ class Review(models.Model):
                               on_delete=models.CASCADE,
                               verbose_name='Телефон',
                               )
-    review = models.CharField(max_length=200, verbose_name='Отзыв')
+    review = models.TextField(max_length=200, verbose_name='Отзыв')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
 
     class Meta:
