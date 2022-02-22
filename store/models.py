@@ -148,6 +148,8 @@ class Review(models.Model):
                               )
     review = models.TextField(max_length=200, verbose_name='Отзыв')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    date = models.DateTimeField(auto_now_add=True)
+
 
     class Meta:
         verbose_name = 'Отзыв'

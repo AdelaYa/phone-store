@@ -62,7 +62,7 @@
             {% for review in reviews reversed  %}
             <div class="card review">
                 <div class="card-header">
-                    {{ review.author }}
+                    {{ review.author }} | {{ review.date }}
                     {% if user == review.author %}
                      | <a href="{% url 'delete_review' phone.slug review.id %}">Удалить</a>
                     {% endif %}
