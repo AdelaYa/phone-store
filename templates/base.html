@@ -13,17 +13,29 @@
         <nav class="navbar navbar-expand navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">Главная</a>
-                <div class="collapse navbar-collapse">
-                    {% if user.is_authenticated %}
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'phone_new' %}">Добавить телефон</a>
-                            </li>
-                        </ul>
-                    {% endif %}
+                        {% if user.is_authenticated %}
+                       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'logout' %}" class="list-group-item list-group-item-secondary">Выйти</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'phone_new' %}" class="list-group-item list-group-item-secondary">Добавить телефон</a></li>
+                            </ul>
+                        </div>
+                            {% else %}
+                            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Вход </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{%url 'login' %}" class="list-group-item list-group-item-secondary">Авторизация</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'register' %}" class="list-group-item list-group-item-secondary">Регистрация</a></li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                    </div>
                 </div>
-                <p class="text-username">{{ user.username }}</p>
-            </div>
         </nav>
     </nav>
     {% block content %}

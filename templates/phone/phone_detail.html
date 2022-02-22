@@ -51,7 +51,8 @@
         </div>
     </div>
   </div>
-  <div class="card-footer">
+    {% if user.is_authenticated %}
+    <div class="card-footer">
         <div>
             <h4>Добавить отзыв</h4>
             <form action="." method="post" class="review-form">
@@ -59,12 +60,13 @@
                 {{ review_form|crispy }}
                 <input type="submit" value="Добавить">
             </form>
+            {% endif %}
             {% for review in reviews reversed  %}
             <div class="card review">
                 <div class="card-header">
                     {{ review.author }} | {{ review.date }}
                     {% if user == review.author %}
-                     | <a href="{% url 'delete_review' phone.slug review.id %}">Удалить</a>
+                     | <a href="{% url 'delete_review' phone.slug review.id %}"><font color="red">Удалить</font></a>
                     {% endif %}
                 </div>
                 <div class="card-body">
