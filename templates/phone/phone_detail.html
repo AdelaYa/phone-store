@@ -40,11 +40,16 @@
                 <p>Основная камера {{ phone.main_camera }}</p>
                 <p>Фронтальная камера {{ phone.front_camera }}</p>
                 <p>Год выпуска {{ phone.year }}</p>
+
                 <p class="phone-price">{{ phone.price }} ₽</p>
             </p>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-big btn-primary">Купить</button>
+                    <form action="{% url 'cart:cart_add' phone.slug %}" method="post">
+                        {{ cart_phone_form }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-big btn-primary">Купить</button>
+                    </form>
                 </div>
                 <p class="text-in-stock-detail">В наличии {{ phone.count }}</p>
             </div>

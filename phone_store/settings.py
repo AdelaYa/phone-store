@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'accounts',
+    'cart',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -146,3 +147,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.authentication.EmailAuthBackend',
 ]
+
+
+CART_SESSION_ID = 'cart'

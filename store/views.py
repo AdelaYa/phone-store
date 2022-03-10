@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Phone, Review
 from .forms import ReviewForm
-
+from cart.forms import CartAddPhoneForm
 
 class HomePageView(ListView):
     model = Phone
@@ -15,6 +15,7 @@ class HomePageView(ListView):
 def phone_detail(request, slug):
     phone = get_object_or_404(Phone, slug=slug)
     reviews = phone.reviews.all()
+    cart_phone_form = CartAddPhoneForm()
     if request.method == 'POST':
         review_form = ReviewForm(data=request.POST)
         if review_form.is_valid():
@@ -30,7 +31,8 @@ def phone_detail(request, slug):
                   {'phone': phone,
                    'reviews': reviews,
                    'review_form': review_form,
-                   'slug': slug})
+                   'slug': slug,
+                   'cart_phone_form': cart_phone_form})
 
 
 class PhoneCreateView(CreateView):
